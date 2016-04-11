@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+
+<script type="text/babel">
+    //Sometimes you need to reference a DOM node in a component.
+    //React gives you the ref attribute to find it.
+    var MyComponent = React.createClass({
+        handleClick: function() {
+            //The desired DOM node should have a ref attribute,
+            //and this.refs.[refName] would return the corresponding DOM node.
+            this.refs.myTextInput.focus();
+        },
+        render: function() {
+            return (
+                    <div>
+                        <input type="text" ref="myTextInput" />
+                        <input type="button" value="Focus the text input" onClick={this.handleClick} />
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <MyComponent />,
+            document.getElementById('example')
+    );
+</script>
+
+</body>
+</html>
